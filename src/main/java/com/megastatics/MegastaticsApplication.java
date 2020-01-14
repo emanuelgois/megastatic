@@ -10,10 +10,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.megastatics.domain.Categoria;
 import com.megastatics.domain.Cidade;
+import com.megastatics.domain.Cliente;
+import com.megastatics.domain.Endereco;
 import com.megastatics.domain.Estado;
 import com.megastatics.domain.Produto;
+import com.megastatics.domain.enums.TipoCliente;
 import com.megastatics.repositories.CategoriaRepository;
 import com.megastatics.repositories.CidadeRepository;
+import com.megastatics.repositories.ClienteRepository;
+import com.megastatics.repositories.EnderecoRepository;
 import com.megastatics.repositories.EstadoRepository;
 import com.megastatics.repositories.ProdutoRepository;
 
@@ -28,6 +33,10 @@ public class MegastaticsApplication implements CommandLineRunner {
 	private EstadoRepository ufRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MegastaticsApplication.class, args);
@@ -69,6 +78,20 @@ public class MegastaticsApplication implements CommandLineRunner {
 		
 		ufRepository.saveAll(Arrays.asList(ce,pe));
 		cidadeRepository.saveAll(Arrays.asList(fortaleza,aquiraz,recife,olinda));
+		
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOA_FISICA);
+
+		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, fortaleza);
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, recife);
+
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		
+		
 		
 	}
 
