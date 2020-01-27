@@ -25,6 +25,16 @@ public class CategoriaService {
 	public Categoria insert(Categoria obj) {
 		obj.setCodigo(null);
 		return repository.save(obj);
+	}
+
+	public Categoria update(Categoria obj) {
+		findById(obj.getCodigo());
+		return repository.save(obj);
+	}
+	
+	public void delete(Integer codigo) {
+		findById(codigo);
+		repository.deleteById(codigo);
 	}	
 
 }
