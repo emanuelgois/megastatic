@@ -1,5 +1,6 @@
 package com.megastatics.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não e possível excluir uma categoria que possui produtos associados!");
 		}
+	}
+
+	public List<Categoria> findAll() {
+		return repository.findAll();
 	}	
 
 }
