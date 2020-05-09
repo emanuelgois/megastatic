@@ -3,10 +3,12 @@ package com.megastatics.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.megastatics.domain.Categoria;
 import com.megastatics.repositories.CategoriaRepository;
+import com.megastatics.services.exception.DataIntegrityException;
 import com.megastatics.services.exception.ObjectNotFoundException;
 
 
@@ -34,7 +36,11 @@ public class CategoriaService {
 	
 	public void delete(Integer codigo) {
 		findById(codigo);
-		repository.deleteById(codigo);
+		try {
+			repository.deleteById(codigo);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não e possível excluir uma categoria que possui produtos associados!");
+		}
 	}	
 
 }

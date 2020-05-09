@@ -42,6 +42,7 @@ public class CategoriaResource {
 	public ResponseEntity<Void> update(@Valid @RequestBody Categoria obj, @PathVariable Integer id){
 		obj.setCodigo(id);
 		obj = service.update(obj);
+		
 		return ResponseEntity.noContent().build();
 	}
 	
