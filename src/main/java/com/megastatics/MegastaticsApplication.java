@@ -65,6 +65,9 @@ public class MegastaticsApplication implements CommandLineRunner {
 		Categoria info = new Categoria(null, "Informática");
 		Categoria escritorio = new Categoria(null, "Escritório");
 		Categoria limpeza = new Categoria(null, "Limpeza");
+		Categoria cama = new Categoria(null, "Cama, mesa e banho");
+		Categoria entretenimento = new Categoria(null, "Entretenimento");
+		Categoria decoracao = new Categoria(null, "Decoração");
 		
 		Produto note = new Produto(null, "Notebook", new BigDecimal(4999.00));
 		note.getCategorias().add(info);
@@ -80,7 +83,7 @@ public class MegastaticsApplication implements CommandLineRunner {
 		mesa.getCategorias().add(escritorio);
 		cadeira.getCategorias().add(escritorio);
 		
-		repository.saveAll(Arrays.asList(info,escritorio,limpeza));
+		repository.saveAll(Arrays.asList(info,escritorio,limpeza,cama, entretenimento,decoracao));
 		prodRepository.saveAll(Arrays.asList(note,fone,ssd,mesa,cadeira));
 		
 		Estado ce = new Estado(null, "Cerá", "CE");
