@@ -50,7 +50,7 @@ public class Cliente {
 		this.nome = nome;
 		this.email = email;
 		this.cpfCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCodigo();
+		this.tipo = (tipo == null)? null : tipo.getCodigo();
 	}
 	
 	
