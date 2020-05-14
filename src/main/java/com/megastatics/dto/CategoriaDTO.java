@@ -2,6 +2,10 @@ package com.megastatics.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.megastatics.domain.Categoria;
 
 public class CategoriaDTO implements Serializable {
@@ -12,6 +16,8 @@ public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = -5720529143178280063L;
 	
 	private Integer codigo;
+	@NotEmpty(message = "Campo obrigatório")
+	@Length(min=5, max =80, message = "O Tamanho do campo deve ter entre 5 e 80 catacteres!" )
 	private String nome;
 	
 	public CategoriaDTO() {
